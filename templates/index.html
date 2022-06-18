@@ -13,17 +13,17 @@
     <div class="container">
         <div class="row gy-4 d-flex justify-content-between">
             <div class="col-lg-6 order-2 order-lg-1 d-flex flex-column justify-content-center">
-                <h2 data-aos="fade-up">Your Neighbourhood safety Partner</h2>
-                <p data-aos="fade-up" data-aos-delay="100">
+                <h2 data-aos="fade-up">Your Neighbourhood Sync Partner</h2>
+                <p class="my-4" data-aos="fade-up" data-aos-delay="100">
                     With proximity, you can keep track of whats happening in your neighbourhood from the comfort of your
                     couch.
                     From events, announcements and alerts. Proximity got you covered.
                 </p>
 
                 <div class="row index-btns">
-                    <ul class="list-group" style="list-style: none;">
-                        <li><a class="list-group-item" href="{% url 'login' %}">Login</a></li>
-                        <li><a class="list-group-item" href="{% url 'signup' %}">Signup</a></li>
+                    <ul class="d-flex" style="list-style: none;">
+                        <li id="index-login-btn"><a class="list-group-item me-4" href="{% url 'login' %}">Login</a></li>
+                        <li id="index-signup-btn"><a class="list-group-item" href="{% url 'signup' %}">Signup</a></li>
                     </ul>
                 </div>
             </div>

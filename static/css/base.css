@@ -9,6 +9,7 @@
     --color-default: #0a0d13;
     --color-primary: #0d42ff;
     --color-secondary: #0e1d34;
+    --color-hover-btn: #74b2c3;
 }
 
 
@@ -200,19 +201,21 @@ h6 {
         color: #fff;
     }
 
-    .navbar .get-a-quote,
-    .navbar .get-a-quote:focus {
-        background: var(--color-primary);
-        padding: 8px 20px;
+    .navbar .get-a-quote.logout,
+    .navbar .get-a-quote.logout:focus {
+        border: 1px solid red;
+        background: transparent;
         border-radius: 4px;
-        margin: 15px;
-        color: #fff;
+        max-width: 40%;
+        margin-left: 1rem;
     }
 
-    .navbar .get-a-quote:hover,
-    .navbar .get-a-quote:focus:hover {
+    .navbar .get-a-quote.logout:hover,
+    .navbar .get-a-quote.logout:focus:hover {
         color: #fff;
-        background: rgba(13, 66, 255, 0.8);
+        background: red;
+        border-radius: 4px;
+        margin-left: 1rem;
     }
 
     .mobile-nav-show {
