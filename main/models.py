@@ -54,8 +54,8 @@ class Category(models.Model):
 
 
 class Post(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    user = models.ForeignKey(Category, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, related_name='author' on_delete=models.CASCADE)
+    category = models.ForeignKey(Category, related_name='category' on_delete=models.CASCADE)
     name = models.CharField(blank=False, null=False, max_length=120)
     description = models.TextField(blank=False, null=False)
     time = models.DateTimeField(blank=True, null=True)
@@ -64,8 +64,35 @@ class Post(models.Model):
     def __str__(self) -> str:
         return self.name
 
-    def save_event(self):
+    def save_post(self):
         self.save()
 
-    def delete_event(self):
+    def delete_post(self):
+        self.delete()
+
+
+class Business(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    neighbourhood = models.ForeignKey(Neighbourhood, on_delete=models.CASCADE)
+    email = models.EmailField(blank=True, null=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self) -> str:
+        return self.name
+
+    def create_business(self):
+        self.save()
+
+    def update_business(self):
+        self.save()
+
+    @classmethod
+    def find_business(cls, business_id):
+        try:
+            business = get_object_or_404(cls, pk=business_id)
+        except:
+            return None
+        return business
+
+    def delete_business(self):
         self.delete()
