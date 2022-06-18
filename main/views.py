@@ -88,23 +88,36 @@ def post(request):
     return render(request, 'post.html', context)
 
 
-def update_profile(request):
+def profile(request, username):
+    user = get_object_or_404(User, username=username)
 
-    if request.method == "POST":
-        user_form = UserUpdateForm(request.POST, instance=request.user)
-        profile_form = UpdateProfileForm(request.POST,
-                                         request.FILES,
-                                         instance=request.user.profile)
+    can_update = False
 
-        if user_form.is_valid() and profile_form.is_valid():
-            user_form.save()
-            profile_form.save()
-            messages.success(request, 'Profile updated successfully')
-            return redirect(reverse('profile', args=[request.user]))
+    if request.user == user:
+        can_update = True
     else:
-        user_form = UserUpdateForm(instance=request.user)
-        profile_form = UpdateProfileForm(instance=request.user.profile)
+        can_update = False
 
-    context = {'user_form': user_form, 'prof_form': profile_form}
+    context = {'user': user, 'can_update': can_update}
+    return render(request, 'profile.html', context)
 
-    return render(request, 'update-profile.html', context)
+# def update_profile(request):
+
+#     if request.method == "POST":
+#         user_form = UserUpdateForm(request.POST, instance=request.user)
+#         profile_form = UpdateProfileForm(request.POST,
+#                                          request.FILES,
+#                                          instance=request.user.profile)
+
+#         if user_form.is_valid() and profile_form.is_valid():
+#             user_form.save()
+#             profile_form.save()
+#             messages.success(request, 'Profile updated successfully')
+#             return redirect(reverse('profile', args=[request.user]))
+#     else:
+#         user_form = UserUpdateForm(instance=request.user)
+#         profile_form = UpdateProfileForm(instance=request.user.profile)
+
+#     context = {'user_form': user_form, 'prof_form': profile_form}
+
+#     return render(request, 'update-profile.html', context)
