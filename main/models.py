@@ -1,3 +1,4 @@
+from unicodedata import category
 from django.db import models
 from django.contrib.auth.models import User
 
@@ -28,4 +29,22 @@ class Category(models.Model):
         self.save()
 
     def delete_category(self):
+        self.delete()
+
+
+class Event(models.Model):
+    name = models.CharField(blank=True, null=True, max_length=120)
+    description = models.TextField(blank=True, null=True)
+    location = models.CharField(blank=False, null=False, max_length=60)
+    time = models.DateTimeField(blank=False, null=False)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+
+    def __str__(self) -> str:
+        return self.name
+
+    def save_event(self):
+        self.save()
+
+    def delete_event(self):
         self.delete()
