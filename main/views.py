@@ -20,3 +20,21 @@ def signup_user(request):
 
         messages.warning(request, 'Please provide the required credentials!')
     return render(request, 'signup.html', {'form': form})
+
+
+def login_user(request):
+    form = LoginUserForm()
+
+    if request.method == "POST":
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+
+        user = authenticate(request, username=username, password=password)
+
+        if user is not None:
+            login(request, user)
+            messages.success(request, 'Logged in successfully')
+            return redirect('home')
+
+        messages.warning(request, 'Invalid email or password!')
+    return render(request, 'login.html', {'form': form})
