@@ -62,3 +62,25 @@ def home(request):
         'posts': all_posts,
     }
     return render(request, 'home.html', context)
+
+
+def post(request):
+    form = PostForm()
+
+    current_user = request.user
+    if request.method == "POST":
+        form = PostForm(request.POST)
+
+        if form.is_valid():
+            project = form.save(commit=False)
+            project.user = current_user
+            project.save()
+            messages.success(request, 'Post uploaded successfully')
+            return redirect('home')
+
+        messages.warning(request, 'Please provide valid data')
+        return render(request, 'submit.html', {'form': form})
+
+    context = {'form': form}
+
+    return render(request, 'submit.html', context)
