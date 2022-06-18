@@ -20,7 +20,7 @@ class Profile(models.Model):
 
 class Event(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    name = models.CharField(blank=False, null=False, max_length=120)
+    title = models.CharField(blank=False, null=False, max_length=120)
     description = models.TextField(blank=True, null=True)
     location = models.CharField(blank=False, null=False, max_length=60)
     time = models.DateTimeField(blank=False, null=False)
@@ -38,7 +38,7 @@ class Event(models.Model):
 
 class Announcement(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    name = models.CharField(blank=False, null=False, max_length=120)
+    title = models.CharField(blank=False, null=False, max_length=120)
     description = models.TextField(blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
@@ -54,7 +54,7 @@ class Announcement(models.Model):
 
 class Alert(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    name = models.CharField(blank=False, null=False, max_length=120)
+    title = models.CharField(blank=False, null=False, max_length=120)
     description = models.TextField(blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
