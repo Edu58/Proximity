@@ -59,6 +59,6 @@ def home(request):
     #     return render(request, 'home.html', context)
 
     context = {
-        'events': all_posts,
+        'posts': all_posts,
     }
     return render(request, 'home.html', context)

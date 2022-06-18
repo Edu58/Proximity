@@ -1,7 +1,7 @@
 <header id="header" class="header d-flex align-items-center fixed-top">
     <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
 
-        <a href="index.html" class="logo d-flex align-items-center">
+        <a href="{% url 'index' %}" class="logo d-flex align-items-center">
             <h1>Proximity</h1>
         </a>
 
@@ -9,7 +9,7 @@
         <i class='mobile-nav-toggle mobile-nav-hide d-none bx bx-x'></i>
         <nav id="navbar" class="navbar">
             <ul>
-                <li><a href="{% url 'index' %}" class="active">Home</a></li>
+                <li><a href="{% url 'home' %}" class="active">Home</a></li>
                 <li><a href="#">Events</a></li>
                 <li><a href="#">Announcements</a></li>
                 <li><a href="#">Alerts</a></li>

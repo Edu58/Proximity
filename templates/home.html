@@ -1,0 +1,66 @@
+{%extends 'base.html'%}
+{% load static %}
+
+{% block styles %}
+{{block.super}}
+<link rel="stylesheet" href="{% static 'css/home.css' %}">
+{% endblock %}
+
+{% block title %}Proximity{% endblock %}
+
+{% block content %}
+<section class="content container" style="margin-top: 8%;">
+
+    <form action="" method="post">
+        {% csrf_token %}
+        <div class="input-group my-3">
+            <input type="text" name="project-query" class="form-control shadow-none" placeholder="neighbourhood"
+                aria-label="Project title" required>
+            <button class="btn text-light shadow-none" type="submit" id="search-button">Search</button>
+        </div>
+    </form>
+
+    <div class="row mt-2">
+        {% if posts %}
+        {% for post in posts %}
+        <div class="col-md-6 col-lg-4 my-4">
+            <div class="card">
+                <div class="card-header
+                {% if post.category|title == 'Announcement' %}
+                announcement
+                {% elif post.category|title == 'Alert' %}
+                alert
+                {% endif %}"
+                id="card_header">
+                    <span class="d-flex align-items-center">
+                        <i class='bx bxs-label me-2 fs-5'></i> <span class="post_category">{{ post.category|title }}</span> <br>
+                    </span>
+                    <span class="d-flex align-items-center">
+                        <i class='bx bx-current-location me-2 fs-5'></i> {{ post.neighbourhood|title }}
+                    </span>
+                    <span class="d-flex align-items-center">
+                        <i class='bx bxs-note me-2 fs-5'></i> {{ post.name|title|truncatechars:32 }}
+                    </span>
+                </div>
+                <div class="card-body">
+                    <p class="card-text">{{ post.description|truncatechars:220 }}</p>
+                    <a href="#" class="btn text-light" id="card-btn">Read More</a>
+                </div>
+            </div>
+        </div>
+        
+        {% endfor %}
+        {% else %}
+        <p class="fs-4 fw-light text-center">Oops! No Posts at this moment</p>
+        {% endif %}
+    </div>
+</section>
+
+{% block extrahead %}
+{{block.super}}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+    integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script type="text/javascript" src="{% static 'js/home.js' %}"></script>
+{% endblock %}
+{% endblock %}
