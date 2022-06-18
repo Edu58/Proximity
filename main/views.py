@@ -1,8 +1,10 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
+from django.urls import reverse
 from .forms import SignUpForm, LoginUserForm, PostForm
 from django.contrib import messages
 from django.contrib.auth import login, logout, authenticate
 from .models import Post
+from django.contrib.auth.models import User
 
 
 
@@ -84,3 +86,25 @@ def post(request):
     context = {'form': form}
 
     return render(request, 'post.html', context)
+
+
+def update_profile(request):
+
+    if request.method == "POST":
+        user_form = UserUpdateForm(request.POST, instance=request.user)
+        profile_form = UpdateProfileForm(request.POST,
+                                         request.FILES,
+                                         instance=request.user.profile)
+
+        if user_form.is_valid() and profile_form.is_valid():
+            user_form.save()
+            profile_form.save()
+            messages.success(request, 'Profile updated successfully')
+            return redirect(reverse('profile', args=[request.user]))
+    else:
+        user_form = UserUpdateForm(instance=request.user)
+        profile_form = UpdateProfileForm(instance=request.user.profile)
+
+    context = {'user_form': user_form, 'prof_form': profile_form}
+
+    return render(request, 'update-profile.html', context)
