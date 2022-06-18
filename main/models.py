@@ -1,6 +1,5 @@
 from django.db import models
 from django.contrib.auth.models import User
-from django.forms import Textarea
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -16,4 +15,17 @@ class Profile(models.Model):
         self.save()
 
     def delete_profile(self):
+        self.delete()
+
+
+class Category(models.Model):
+    name = models.CharField(max_length=30)
+
+    def __str__(self) -> str:
+        return self.name
+
+    def save_category(self):
+        self.save()
+
+    def delete_category(self):
         self.delete()
