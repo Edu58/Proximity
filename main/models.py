@@ -48,13 +48,17 @@ class Profile(models.Model):
     def delete_profile(self):
         self.delete()
 
+class Category(models.Model):
+    name = models.CharField(blank=False, null=False, max_length=60)
+    created_at = created_at = models.DateTimeField(auto_now_add=True)
 
-class Event(models.Model):
+
+class Post(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(Category, on_delete=models.CASCADE)
     name = models.CharField(blank=False, null=False, max_length=120)
-    description = models.TextField(blank=True, null=True)
-    location = models.CharField(blank=False, null=False, max_length=60)
-    time = models.DateTimeField(blank=False, null=False)
+    description = models.TextField(blank=False, null=False)
+    time = models.DateTimeField(blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self) -> str:
@@ -64,36 +68,4 @@ class Event(models.Model):
         self.save()
 
     def delete_event(self):
-        self.delete()
-
-
-class Announcement(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    title = models.CharField(blank=False, null=False, max_length=120)
-    description = models.TextField(blank=True, null=True)
-    created_at = models.DateTimeField(auto_now_add=True)
-
-    def __str__(self) -> str:
-        return self.name
-
-    def save_announcement(self):
-        self.save()
-
-    def delete_announcement(self):
-        self.delete()
-
-
-class Alert(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    title = models.CharField(blank=False, null=False, max_length=120)
-    description = models.TextField(blank=True, null=True)
-    created_at = models.DateTimeField(auto_now_add=True)
-
-    def __str__(self) -> str:
-        return self.name
-
-    def save_alert(self):
-        self.save()
-
-    def delete_alert(self):
         self.delete()
