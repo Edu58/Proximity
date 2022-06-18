@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .forms import SignUpForm, LoginUserForm
+from .forms import SignUpForm, LoginUserForm, PostForm
 from django.contrib import messages
 from django.contrib.auth import login, logout, authenticate
 from .models import Post
