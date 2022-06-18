@@ -1,4 +1,4 @@
-{%extends 'base.html'%}
+{% extends 'base.html' %}
 {% load static %}
 
 {% block styles %}
@@ -6,6 +6,33 @@
 <link rel="stylesheet" href="{% static 'css/index.css' %}">
 {% endblock styles %}
 
+{% block title %}Home{% endblock title %}
+
 {% block content %}
-<h1>Hello</h1>
+<section id="hero" class="hero d-flex align-items-center">
+    <div class="container">
+        <div class="row gy-4 d-flex justify-content-between">
+            <div class="col-lg-6 order-2 order-lg-1 d-flex flex-column justify-content-center">
+                <h2 data-aos="fade-up">Your Neighbourhood safety Partner</h2>
+                <p data-aos="fade-up" data-aos-delay="100">
+                    With proximity, you can keep track of whats happening in your neighbourhood from the comfort of your
+                    couch.
+                    From events, announcements and alerts. Proximity got you covered.
+                </p>
+
+                <div class="row index-btns">
+                    <ul class="list-group" style="list-style: none;">
+                        <li><a class="list-group-item" href="">Login</a></li>
+                        <li><a class="list-group-item" href="">Signup</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-lg-5 order-1 order-lg-2 hero-img" data-aos="zoom-out">
+                <img src="../static/images/proximity.png" class="img-fluid mb-3 mb-lg-0" alt="">
+            </div>
+
+        </div>
+    </div>
+</section>
 {% endblock content %}
