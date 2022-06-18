@@ -28,6 +28,7 @@ class PostForm(forms.ModelForm):
         model = Post
         exclude = ("user", )
         fields = (
+            'neighbourhood',
             'name',
-            'description', 
+            'description',
         )

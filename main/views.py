@@ -79,8 +79,8 @@ def post(request):
             return redirect('home')
 
         messages.warning(request, 'Please provide valid data')
-        return render(request, 'submit.html', {'form': form})
+        return render(request, 'post.html', {'form': form})
 
     context = {'form': form}
 
-    return render(request, 'submit.html', context)
+    return render(request, 'post.html', context)
