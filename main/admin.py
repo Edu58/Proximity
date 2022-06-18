@@ -1,10 +1,9 @@
 from django.contrib import admin
-from .models import Profile, Event, Announcement, Alert, Category
+from .models import Profile, Event, Announcement, Alert
 
 
 admin.site.register([
     Profile,
-    Category,
     Event,
     Announcement,
     Alert
