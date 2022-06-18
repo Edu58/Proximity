@@ -67,7 +67,7 @@ class Post(models.Model):
     user =  models.ForeignKey(User, related_name='author', on_delete=models.CASCADE)
     category = models.ForeignKey(Category, related_name='category', on_delete=models.CASCADE)
     neighbourhood = models.ForeignKey(Neighbourhood, related_name='neighbourhood', on_delete=models.CASCADE, null=True, blank=True)
-    name = models.CharField(blank=False, null=False, max_length=120)
+    title = models.CharField(blank=False, null=False, max_length=120)
     description = models.TextField(blank=False, null=False)
     created_at = models.DateTimeField(auto_now_add=True)
 
