@@ -8,5 +8,4 @@ class MainConfig(AppConfig):
     def ready(self):
         import main.signals
 
-
-default_app_config = 'main.apps.MainConfig'
+default_app_config='main.apps.MainConfig'

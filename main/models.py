@@ -4,10 +4,10 @@ from django.shortcuts import get_object_or_404
 
 
 class Neighbourhood(models.Model):
-    name = models.CharField(blank=False, null=False, max_length=120)
+    name = models.CharField(null=False, blank=False, max_length=120)
     location = models.CharField(blank=False, null=False, max_length=60)
     number_of_occupants = models.IntegerField(blank=False, null=False)
-    admin = models.ForeignKey(User, on_delete=models.SET_NULL)
+    admin = models.ForeignKey(User, on_delete=models.PROTECT)
 
     def __str__(self) -> str:
         return self.name
@@ -35,9 +35,10 @@ class Neighbourhood(models.Model):
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    profile_pic = models.ImageField(blank=True, null=True, upload_to='profile/')
-    neighbourhood = models.ForeignKey(Neighbourhood, on_delete=models.CASCADE)
+    neighbourhood = models.ForeignKey(Neighbourhood, on_delete=models.CASCADE, blank=True, null=True)
+    profile_pic = models.ImageField(blank=True, null=True, upload_to='profiles/')
     bio = models.TextField(null=True, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self) -> str:
         return self.user.username
@@ -52,13 +53,22 @@ class Category(models.Model):
     name = models.CharField(blank=False, null=False, max_length=60)
     created_at = created_at = models.DateTimeField(auto_now_add=True)
 
+    def __str__(self) -> str:
+        return self.name
+
+    def save_category(self):
+        self.save()
+
+    def delete_category(self):
+        self.delete()
+
 
 class Post(models.Model):
-    user = models.ForeignKey(User, related_name='author' on_delete=models.CASCADE)
-    category = models.ForeignKey(Category, related_name='category' on_delete=models.CASCADE)
+    user =  models.ForeignKey(User, related_name='author', on_delete=models.CASCADE)
+    category = models.ForeignKey(Category, related_name='category', on_delete=models.CASCADE)
+    neighbourhood = models.ForeignKey(Neighbourhood, related_name='neighbourhood', on_delete=models.CASCADE, null=True, blank=True)
     name = models.CharField(blank=False, null=False, max_length=120)
     description = models.TextField(blank=False, null=False)
-    time = models.DateTimeField(blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self) -> str:
