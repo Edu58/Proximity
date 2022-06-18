@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect
 from .forms import SignUpForm, LoginUserForm
 from django.contrib import messages
 from django.contrib.auth import login, logout, authenticate
+from .models import Profile, Announcement, Alert, Event
+
 
 
 def index(request):
@@ -39,3 +41,24 @@ def login_user(request):
 
         messages.warning(request, 'Invalid email or password!')
     return render(request, 'login.html', {'form': form})
+
+
+def home(request):
+    all_events = Event.objects.all()
+    all_announcements = Announcement.objects.all()
+    all_alerts = Alert.objects.all()
+
+    # if request.method == "POST":
+    #     query = request.POST.get('project-query')
+    #     results = Event.get_project_by_title(query)
+
+    #     context = {
+    #         'projects': results,
+    #     }
+
+    #     return render(request, 'home.html', context)
+
+    context = {
+        'events': all_events,
+    }
+    return render(request, 'home.html', context)
