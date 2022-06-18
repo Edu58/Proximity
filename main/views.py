@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from .forms import SignUpForm, LoginUserForm
 from django.contrib import messages
 from django.contrib.auth import login, logout, authenticate
-from .models import Profile
+from .models import Post
 
 
 
@@ -43,22 +43,22 @@ def login_user(request):
     return render(request, 'login.html', {'form': form})
 
 
-# def home(request):
-#     all_events = Event.objects.all()
-#     all_announcements = Announcement.objects.all()
-#     all_alerts = Alert.objects.all()
+def home(request):
+    all_posts = Post.objects.all()
 
-#     # if request.method == "POST":
-#     #     query = request.POST.get('project-query')
-#     #     results = Event.get_project_by_title(query)
+    [post for post in all_posts]
 
-#     #     context = {
-#     #         'projects': results,
-#     #     }
+    # if request.method == "POST":
+    #     query = request.POST.get('project-query')
+    #     results = Event.get_project_by_title(query)
 
-#     #     return render(request, 'home.html', context)
+    #     context = {
+    #         'projects': results,
+    #     }
 
-#     context = {
-#         'events': all_events,
-#     }
-#     return render(request, 'home.html', context)
+    #     return render(request, 'home.html', context)
+
+    context = {
+        'events': all_posts,
+    }
+    return render(request, 'home.html', context)
