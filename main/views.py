@@ -5,6 +5,7 @@ from django.contrib import messages
 from django.contrib.auth import login, logout, authenticate
 from .models import Business, Neighbourhood, Post
 from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
 
 
 
@@ -45,6 +46,7 @@ def login_user(request):
     return render(request, 'login.html', {'form': form})
 
 
+@login_required(login_url='login')
 def home(request):
     all_posts = Post.objects.all()
 
@@ -56,6 +58,7 @@ def home(request):
     return render(request, 'home.html', context)
 
 
+@login_required(login_url='login')
 def post_detail(request, post_id):
 
     try:
@@ -70,6 +73,7 @@ def post_detail(request, post_id):
     return render(request, 'post_detail.html', context)
 
 
+@login_required(login_url='login')
 def post(request):
     form = PostForm()
 
@@ -92,6 +96,7 @@ def post(request):
     return render(request, 'post.html', context)
 
 
+@login_required(login_url='login')
 def hoods(request):
 
     hoods = Neighbourhood.objects.all()
@@ -111,6 +116,7 @@ def hoods(request):
     return render(request, 'hoods.html', context)
 
 
+@login_required(login_url='login')
 def businesses(request):
 
     businesses = Business.objects.all()
@@ -131,6 +137,7 @@ def businesses(request):
     return render(request, 'businesses.html', context)
 
 
+@login_required(login_url='login')
 def profile(request, username):
     user = get_object_or_404(User, username=username)
 
@@ -145,6 +152,7 @@ def profile(request, username):
     return render(request, 'profile.html', context)
 
 
+@login_required(login_url='login')
 def update_profile(request):
 
     if request.method == "POST":
@@ -167,6 +175,7 @@ def update_profile(request):
     return render(request, 'update-profile.html', context)
 
 
+@login_required(login_url='login')
 def logout_user(request):
     logout(request)
     messages.success(request, 'Logged out successfully')
