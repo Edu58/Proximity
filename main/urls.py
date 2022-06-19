@@ -11,6 +11,7 @@ urlpatterns = [
     path('post/<post_id>', views.post_detail, name='post_detail'),
     path('post/', views.post, name='post'),
     path('hoods/', views.hoods, name='hoods'),
+    path('hood/<hood_id>', views.hood_detail, name='hood-detail'),
     path('add-hood/', views.add_hood, name='add-hood'),
     path('add-business/', views.add_business, name='add-business'),
     path('businesses/', views.businesses, name='businesses'),

@@ -87,7 +87,7 @@ class Post(models.Model):
                                  related_name='category',
                                  on_delete=models.CASCADE)
     neighbourhood = models.ForeignKey(Neighbourhood,
-                                      related_name='neighbourhood',
+                                      related_name='hood_posts',
                                       on_delete=models.CASCADE,
                                       null=True,
                                       blank=True)

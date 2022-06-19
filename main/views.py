@@ -117,6 +117,16 @@ def hoods(request):
 
 
 @login_required(login_url='login')
+def hood_detail(request, hood_id):
+
+    hood = get_object_or_404(Neighbourhood, pk=hood_id)
+
+    context = {'hood': hood}
+
+    return render(request, 'hood-detail.html', context)
+
+
+@login_required(login_url='login')
 def add_hood(request):
     form = AddNeighbourhood()
 
