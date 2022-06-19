@@ -210,6 +210,10 @@ def update_profile(request):
 
 
 @login_required(login_url='login')
+def about(request):
+    return render(request,'about.html')
+
+@login_required(login_url='login')
 def logout_user(request):
     logout(request)
     messages.success(request, 'Logged out successfully')

@@ -15,7 +15,7 @@
                 <li><a href="{% url 'businesses' %}">Businesses</a></li>
                 <li><a href="{% url 'post' %}">Post</a></li>
                 <li><a href="{% url 'profile' request.user %}">Profile</a></li>
-                <li><a href="#">About</a></li>
+                <li><a href="{% url 'about' %}">About</a></li>
                 <li><a class="get-a-quote logout" href="{% url 'logout' %}">Logout</a></li>
                 {% endif %}
             </ul>
