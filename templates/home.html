@@ -44,7 +44,7 @@
                 </div>
                 <div class="card-body">
                     <p class="card-text">{{ post.description|truncatechars:220 }}</p>
-                    <a href="#" class="btn text-light" id="card-btn">Read More</a>
+                    <a href="{% url 'post_detail' post.id %}" class="btn text-light" id="card-btn">Read More</a>
                 </div>
             </div>
         </div>

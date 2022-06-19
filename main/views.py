@@ -66,6 +66,20 @@ def home(request):
     return render(request, 'home.html', context)
 
 
+def post_detail(request, post_id):
+
+    try:
+        post = get_object_or_404(Post, pk=post_id)
+    except Post.DoesNotExist:
+        return None
+
+    context = {
+        'post': post
+    }
+
+    return render(request, 'post_detail.html', context)
+
+
 def post(request):
     form = PostForm()
 

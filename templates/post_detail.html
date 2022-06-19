@@ -1,0 +1,44 @@
+{%extends 'base.html'%}
+{% load static %}
+{% load django_bootstrap5 %}
+
+{% block styles %}
+{{block.super}}
+<link rel="stylesheet" href="{% static 'css/vote.css' %}">
+{% endblock styles %}
+
+{% block title %}Read More{% endblock title %}
+
+{% block content %}
+<section class="content container" style="margin-top: 8%;">
+    <div class="d-flex justify-content-between align-items-center mt-4">
+        <p class="fw-light">
+            <span class="fw-bold">
+                by @{{ post.user.username|title }}
+            </span> <br>
+            <span class="fw-bold">
+                <span class="fw-light">
+                    {{ post.created_at|timesince }} ago
+                </span>
+            </span>
+        </p>
+        {% if post.user.profile.profile_pic %}
+        <img src="{{ post.user.profile.profile_pic.url }}" alt="" style="width: 5rem; height: 5rem; border-radius: 50%;">
+        {% else %}
+        <p style="width: 5rem; height: 5rem; border-radius: 50%; background-color: #74b2c3;"></p>
+        {% endif %}
+    </div>
+
+    <div class="mt-4">
+
+        <div class="card" style="background: transparent !important;">
+            <h5 class="card-header">{{ post.category }}</h5>
+            <h5 class="card-header">{{ post.neighbourhood }}</h5>
+            <div class="card-body">
+                <h5 class="card-title">Title: {{post.title}}</h5>
+                <p class="card-text">{{ post.description }}</p>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock content %}
