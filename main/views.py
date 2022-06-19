@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404, get_list_or_404
 from django.urls import reverse
-from .forms import SignUpForm, LoginUserForm, PostForm, UpdateProfileForm, UserUpdateForm
+from .forms import SignUpForm, LoginUserForm, PostForm, UpdateProfileForm, UserUpdateForm, AddBusiness, AddNeighbourhood
 from django.contrib import messages
 from django.contrib.auth import login, logout, authenticate
 from .models import Business, Neighbourhood, Post
@@ -118,6 +118,15 @@ def hoods(request):
 
 @login_required(login_url='login')
 def add_hood(request):
+    form = AddNeighbourhood()
+
+    if request.method == "POST":
+        form = AddNeighbourhood(request.POST)
+
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Neighbourhood created successfully')
+            return redirect('hoods')
 
     return render(request, 'add-hood.html')
 
