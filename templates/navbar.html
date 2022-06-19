@@ -11,9 +11,8 @@
             <ul>
                 {% if user.is_authenticated %}
                 <li><a href="{% url 'home' %}" class="active">Home</a></li>
-                <li><a href="#">Events</a></li>
-                <li><a href="#">Announcements</a></li>
-                <li><a href="#">Alerts</a></li>
+                <li><a href="#">Hoods</a></li>
+                <li><a href="#">Businesses</a></li>
                 <li><a href="{% url 'post' %}">Post</a></li>
                 <li><a href="{% url 'profile' request.user %}">Profile</a></li>
                 <li><a href="#">About</a></li>
