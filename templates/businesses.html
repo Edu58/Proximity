@@ -41,7 +41,12 @@
                 <div class="card-body">
                     <p class="card-text">
                         <p>
-                            <span class="fw-bold">Neighbourhood:</span> {{ business.neighbourhood }}
+                            <span class="fw-bold">Hood:</span> 
+                            <a href="{% url 'hood-detail' business.neighbourhood.id %}">
+                                <span class="badge bg-secondary">
+                                    {{ business.neighbourhood }}
+                                </span>
+                            </a>
                         </p>
                         <p>
                             <span class="fw-bold">Email:</span> {{ business.email}}
