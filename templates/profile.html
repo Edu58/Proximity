@@ -16,45 +16,51 @@
             {% if user.profile.profile_pic %}
             <img src="{{ user.profile.profile_pic.url }}" alt="" style="width: 5rem; height: 5rem; border-radius: 50%;">
             {% else %}
-            <p
-                style="width: 5rem; height: 5rem; border-radius: 50%; background-color: #74b2c3;"></p>
+            <p style="width: 5rem; height: 5rem; border-radius: 50%; background-color: #74b2c3;"></p>
             {% endif %}
         </div>
 
-        <div class="profile-info">
-            <p>
-                <span class="fw-bold">Username</span> <br>
-                <span class="fw-bold">
-                    {{user.username}}
-                </span>
+        <div class="card profile-info" style="background: #2d384bda !important;">
+            <div class="card-header">
+                <div class="d-flex justify-content-between align-items-center">
+                    <p class="fw-bold fs-4">
+                        {{user.username}}
+                    </p>
+                    <p>
+                        {% if can_update  %}
+                        <a href="{% url 'update_profile' %}">
+                            <button type="button" class="btn text-light btn-sm border ms-2 mt-2" id="edit-profile-btn">Edit Profile</button>
+                        </a>
+                        {% endif %}
+                    </p>
+                </div>
+            </div>
+            <div class="card-body">
+                <span class="card-text mt-0 pt-0">
+                    <p>
+                        <span class="fw-bold fs-5">Neighbourhood</span> <br>
+                        <span class="fw-light">
+                            {{user.profile.neighbourhood}}
+                        </span>
+                    </p>
 
-                {% if can_update  %}
-                <a href="{% url 'update_profile' %}">
-                    <button type="button" class="btn text-light btn-sm border ms-2 mt-2">Edit Profile</button>
-                </a>
-                {% endif %}
-
-               <p>
-                 <span class="fw-bold">Neighbourhood</span> <br>
-                 <span class="fw-bold">
-                     {{user.profile.neighbourhood}}
-                 </span>
-               </p>
-            </p>
-
-            {% if user.profile.bio %}
-            <div class="bio fw-bold">
-                Bio <br>
-                <span class="fw-light">
-                    {{user.profile.bio|safe}}
+                    {% if user.profile.bio %}
+                    <div class="bio fw-bold">
+                        <span class="fw-bold fs-5">
+                            Bio
+                        </span> <br>
+                        <span class="fw-light">
+                            {{user.profile.bio|safe}}
+                        </span>
+                    </div>
+                    {% endif %}
                 </span>
             </div>
-            {% endif %}
         </div>
 
     </div>
 
-    <div class="my-posts mt-4 border-top text-center w-100">
+    <div class="my-posts mt-5 border-top text-center w-100">
         <p class="fs-5 fw-bold text-center pt-2">
             <i class='bx bx-grid'></i>
             POSTS
@@ -64,7 +70,8 @@
             {% if user.posts.all %}
             <ul class="list-group list-group-numbered" style="text-align: left;">
                 {% for post in user.posts.all %}
-                <li class="list-group-item text-light" style="background-color: transparent; border-color: #FFF !important;">{{ post.title }}</li>
+                <li class="list-group-item text-light"
+                    style="background-color: transparent; border-color: #FFF !important;">{{ post.title }}</li>
                 {% endfor %}
             </ul>
             {% else %}
