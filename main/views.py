@@ -121,3 +121,5 @@ def update_profile(request):
     context = {'user_form': user_form, 'prof_form': profile_form}
 
     return render(request, 'update-profile.html', context)
+
+    

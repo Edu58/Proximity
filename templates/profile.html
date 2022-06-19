@@ -27,6 +27,12 @@
                     {{user.username}}
                 </span>
 
+                {% if can_update  %}
+                <a href="{% url 'update_profile' %}">
+                    <button type="button" class="btn text-light btn-sm border ms-2 mt-2">Edit Profile</button>
+                </a>
+                {% endif %}
+
                <p>
                  <span class="fw-bold">Neighbourhood</span> <br>
                  <span class="fw-bold">
@@ -48,16 +54,16 @@
     </div>
 
     <div class="my-posts mt-4 border-top text-center w-100">
-        <p class="fs-6 fw-bold text-center pt-2">
+        <p class="fs-5 fw-bold text-center pt-2">
             <i class='bx bx-grid'></i>
             POSTS
         </p>
 
         <div class="posts">
             {% if user.posts.all %}
-            <ul class="list-group">
-                {% for posts in user.posts.all %}
-                <li class="list-group-item">{{ post.title }}</li>
+            <ul class="list-group list-group-numbered" style="text-align: left;">
+                {% for post in user.posts.all %}
+                <li class="list-group-item text-light" style="background-color: transparent; border-color: #FFF !important;">{{ post.title }}</li>
                 {% endfor %}
             </ul>
             {% else %}

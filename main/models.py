@@ -1,3 +1,4 @@
+from unicodedata import name
 from django.db import models
 from django.contrib.auth.models import User
 from django.shortcuts import get_object_or_404
@@ -64,7 +65,7 @@ class Category(models.Model):
 
 
 class Post(models.Model):
-    user =  models.ForeignKey(User, related_name='author', on_delete=models.CASCADE)
+    user =  models.ForeignKey(User, related_name='posts', on_delete=models.CASCADE)
     category = models.ForeignKey(Category, related_name='category', on_delete=models.CASCADE)
     neighbourhood = models.ForeignKey(Neighbourhood, related_name='neighbourhood', on_delete=models.CASCADE, null=True, blank=True)
     title = models.CharField(blank=False, null=False, max_length=120)
@@ -72,7 +73,7 @@ class Post(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self) -> str:
-        return self.name
+        return self.title
 
     def save_post(self):
         self.save()
@@ -83,6 +84,7 @@ class Post(models.Model):
 
 class Business(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+    name = models.CharField(blank=False, null=False, max_length=120)
     neighbourhood = models.ForeignKey(Neighbourhood, on_delete=models.CASCADE)
     email = models.EmailField(blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
