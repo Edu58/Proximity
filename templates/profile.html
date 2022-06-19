@@ -1,0 +1,69 @@
+{%extends 'base.html'%}
+{% load static %}
+{% load django_bootstrap5 %}
+
+{% block styles %}
+{{block.super}}
+<link rel="stylesheet" href="{% static 'css/profile.css' %}">
+{% endblock styles %}
+
+{% block title %}Profile{% endblock title %}
+
+{% block content %}
+<section class="container d-flex flex-column justify-content-center align-items-center" style="margin-top: 8%;">
+    <div class="profile d-flex justify-content-around">
+        <div class="dp pe-5">
+            {% if user.profile.profile_pic %}
+            <img src="{{ user.profile.profile_pic.url }}" alt="">
+            {% else %}
+            <span>No Photo</span>
+            {% endif %}
+        </div>
+
+        <div class="profile-info">
+            <p>
+                <span class="fw-bold">Username</span> <br>
+                <span class="fw-bold">
+                    {{user.username}}
+                </span>
+
+               <p>
+                 <span class="fw-bold">Neighbourhood</span> <br>
+                 <span class="fw-bold">
+                     {{user.profile.neighbourhood}}
+                 </span>
+               </p>
+            </p>
+
+            {% if user.profile.bio %}
+            <div class="bio fw-bold">
+                Bio <br>
+                <span class="fw-light">
+                    {{user.profile.bio|safe}}
+                </span>
+            </div>
+            {% endif %}
+        </div>
+
+    </div>
+
+    <div class="my-posts mt-4 border-top text-center w-100">
+        <p class="fs-6 fw-bold text-center pt-2">
+            <i class='bx bx-grid'></i>
+            POSTS
+        </p>
+
+        <div class="posts">
+            {% if user.posts.all %}
+            <ul class="list-group">
+                {% for posts in user.posts.all %}
+                <li class="list-group-item">{{ post.title }}</li>
+                {% endfor %}
+            </ul>
+            {% else %}
+            <p class="mt-4">YOU HAVE NO POSTS</p>
+            {% endif %}
+        </div>
+    </div>
+</section>
+{% endblock content %}
