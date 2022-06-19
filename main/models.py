@@ -88,9 +88,7 @@ class Post(models.Model):
                                  on_delete=models.CASCADE)
     neighbourhood = models.ForeignKey(Neighbourhood,
                                       related_name='hood_posts',
-                                      on_delete=models.CASCADE,
-                                      null=True,
-                                      blank=True)
+                                      on_delete=models.CASCADE)
     title = models.CharField(blank=False, null=False, max_length=120)
     description = models.TextField(blank=False, null=False)
     created_at = models.DateTimeField(auto_now_add=True)

@@ -36,7 +36,9 @@
                 <div class="card-header">
                     <h5>
                         Hood Name: <a href="{% url 'hood-detail' hood.id %}">
-                             {{ hood.name|title }}
+                             <span class="badge bg-secondary">
+                                {{ hood.name }}
+                             </span>
                         </a>
                     </h5>
                 </div>

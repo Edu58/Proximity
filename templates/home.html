@@ -29,7 +29,12 @@
                         <i class='bx bxs-label me-2 fs-5'></i> <span class="post_category">{{ post.category|title }}</span> <br>
                     </span>
                     <span class="d-flex align-items-center">
-                        <i class='bx bx-current-location me-2 fs-5'></i> {{ post.neighbourhood|title }}
+                        <i class='bx bx-current-location me-2 fs-5'></i> <a
+                            href="{% url 'hood-detail' post.neighbourhood.id %}">
+                             <span class="badge bg-secondary">
+                                {{ post.neighbourhood }}
+                             </span>
+                        </a>
                     </span>
                     <span class="d-flex align-items-center">
                         <i class='bx bxs-note me-2 fs-5'></i> {{ post.title|title|truncatechars:32 }}
