@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse
-from .forms import SignUpForm, LoginUserForm, PostForm
+from .forms import SignUpForm, LoginUserForm, PostForm, UpdateProfileForm, UserUpdateForm
 from django.contrib import messages
 from django.contrib.auth import login, logout, authenticate
 from .models import Post
