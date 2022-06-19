@@ -10,6 +10,7 @@ urlpatterns = [
     path('home/', views.home, name='home'),
     path('post/<post_id>', views.post_detail, name='post_detail'),
     path('post/', views.post, name='post'),
+    path('hoods/', views.hoods, name='hoods'),
     path('profile/<username>/', views.profile, name='profile'),
     path('update-profile/', views.update_profile, name='update_profile'),
     path('logout/', views.logout_user, name='logout'),

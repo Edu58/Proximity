@@ -1,0 +1,46 @@
+{%extends 'base.html'%}
+{% load static %}
+
+{% block title %}Hoods{% endblock %}
+
+{% block content %}
+<section class="content container" style="margin-top: 8%;">
+    <div class="row mt-2">
+        {% if hoods %}
+        {% for hood in hoods %}
+        <div class="col-md-6 col-lg-4 my-4">
+            <div class="card" style="background: #2d384bda !important;">
+                <div class="card-header">
+                    <h5>
+                        Hood Name: {{ hood.name|title }}
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <p class="card-text">
+                        <p>
+                            <span class="fw-bold">Location:</span> {{ hood.location|title }}
+                        </p>
+                        <p>
+                            <span class="fw-bold">Occupants:</span> {{ hood.number_of_occupants}}
+                        </p>
+                        <p>
+                            <span class="fw-bold">Health Department:</span> {{ hood.health_dept_contact}}
+                        </p>
+                        <p>
+                            <span class="fw-bold">Fire Department:</span> {{ hood.fire_dept_contact}}
+                        </p>
+                        <p>
+                            <span class="fw-bold">Police Department:</span> {{ hood.police_dept_contact}}
+                        </p>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        {% endfor %}
+        {% else %}
+        <p class="fs-4 fw-light text-center">Oops! No Posts at this moment</p>
+        {% endif %}
+    </div>
+</section>
+{% endblock %}

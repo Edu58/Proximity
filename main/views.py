@@ -1,9 +1,9 @@
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render, redirect, get_object_or_404, get_list_or_404
 from django.urls import reverse
 from .forms import SignUpForm, LoginUserForm, PostForm, UpdateProfileForm, UserUpdateForm
 from django.contrib import messages
 from django.contrib.auth import login, logout, authenticate
-from .models import Post
+from .models import Neighbourhood, Post
 from django.contrib.auth.models import User
 
 
@@ -102,6 +102,19 @@ def post(request):
     return render(request, 'post.html', context)
 
 
+def hoods(request):
+
+    try:
+        hoods = get_list_or_404(Neighbourhood)
+    except:
+        return None
+
+    context = {
+        'hoods': hoods
+    }
+    return render(request, 'hoods.html', context)
+
+
 def profile(request, username):
     user = get_object_or_404(User, username=username)
 
@@ -114,6 +127,7 @@ def profile(request, username):
 
     context = {'user': user, 'can_update': can_update}
     return render(request, 'profile.html', context)
+
 
 def update_profile(request):
 
