@@ -14,7 +14,7 @@ class Neighbourhood(models.Model):
         null=True, blank=True, validators=[MaxValueValidator(9999999999999)])
     fire_dept_contact = models.PositiveBigIntegerField(
         null=True, blank=True, validators=[MaxValueValidator(9999999999999)])
-    admin = models.ForeignKey(User, on_delete=models.SET_DEFAULT, default=1)
+    admin = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
 
     def __str__(self) -> str:
         return self.name
