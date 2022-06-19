@@ -2,22 +2,21 @@
 {% load django_bootstrap5 %}
 {% load static %}
 
-{% block title %}Post{% endblock title %}
+{% block title %}Add Hood{% endblock title %}
 
 {% block content %}
 <section class="container" style="margin-top: 8%;">
     <div class="text-center mb-4">
         <h3 class="fw-bold">
-            Post to your Neighbourhood
+            Add a Neighbourhood
         </h3>
     </div>
-    <form action="{% url 'post' %}" method="post" class="mx-auto" style="max-width: 30rem;">
+    <form action="{% url 'add-hood' %}" method="post" class="mx-auto" style="max-width: 30rem;">
         {% csrf_token %}
 
-        {{ form.media }}
         {% bootstrap_form form %}
         
-        <button class="btn btn-primary w-100">Post</button>
+        <button class="btn btn-primary w-100">Add</button>
     </form>
 </section>
 {% endblock content %}

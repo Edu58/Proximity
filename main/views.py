@@ -128,7 +128,8 @@ def add_hood(request):
             messages.success(request, 'Neighbourhood created successfully')
             return redirect('hoods')
 
-    return render(request, 'add-hood.html')
+    context = {'form': form}
+    return render(request, 'add-hood.html', context)
 
 
 @login_required(login_url='login')
@@ -150,6 +151,24 @@ def businesses(request):
     context = {'businesses': businesses}
 
     return render(request, 'businesses.html', context)
+
+
+@login_required(login_url='login')
+def add_business(request):
+    form = AddBusiness()
+
+    if request.method == "POST":
+        form = AddBusiness(request.POST)
+
+        if form.is_valid():
+            business = form.save(commit=False)
+            business.user = request.user
+            business.save()
+            messages.success(request, 'Business created successfully')
+            return redirect('businesses')
+
+    context = {'form': form}
+    return render(request, 'add-business.html', context)
 
 
 @login_required(login_url='login')
