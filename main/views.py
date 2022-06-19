@@ -122,4 +122,8 @@ def update_profile(request):
 
     return render(request, 'update-profile.html', context)
 
-    
+
+def logout_user(request):
+    logout(request)
+    messages.success(request, 'Logged out successfully')
+    return redirect('login')

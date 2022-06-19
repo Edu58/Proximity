@@ -11,6 +11,7 @@ urlpatterns = [
     path('post/', views.post, name='post'),
     path('profile/<username>/', views.profile, name='profile'),
     path('update-profile/', views.update_profile, name='update_profile'),
+    path('logout/', views.logout_user, name='logout'),
 ]
 
 if settings.DEBUG:
