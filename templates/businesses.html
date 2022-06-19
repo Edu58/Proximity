@@ -1,0 +1,40 @@
+{%extends 'base.html'%}
+{% load static %}
+
+{% block title %}Businesses{% endblock %}
+
+{% block content %}
+<section class="content container" style="margin-top: 8%;">
+    <div class="row mt-2">
+        {% if businesses %}
+        {% for business in businesses %}
+        <div class="col-md-6 col-lg-4 my-4">
+            <div class="card" style="background: #2d384bda !important;">
+                <div class="card-header">
+                    <h5>
+                        Business Name: {{ business.name|title }}
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <p class="card-text">
+                        <p>
+                            <span class="fw-bold">Neighbourhood:</span> {{ business.neighbourhood }}
+                        </p>
+                        <p>
+                            <span class="fw-bold">Email:</span> {{ business.email}}
+                        </p>
+                        <p>
+                            <span class="fw-bold">Contact:</span> {{ business.business_contact}}
+                        </p>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        {% endfor %}
+        {% else %}
+        <p class="fs-4 fw-light text-center">Oops! No Businesses at this moment</p>
+        {% endif %}
+    </div>
+</section>
+{% endblock %}

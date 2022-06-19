@@ -3,7 +3,7 @@ from django.urls import reverse
 from .forms import SignUpForm, LoginUserForm, PostForm, UpdateProfileForm, UserUpdateForm
 from django.contrib import messages
 from django.contrib.auth import login, logout, authenticate
-from .models import Neighbourhood, Post
+from .models import Business, Neighbourhood, Post
 from django.contrib.auth.models import User
 
 
@@ -104,15 +104,28 @@ def post(request):
 
 def hoods(request):
 
-    try:
-        hoods = get_list_or_404(Neighbourhood)
-    except:
-        return None
+    hoods = Neighbourhood.objects.all()
 
-    context = {
-        'hoods': hoods
-    }
-    return render(request, 'hoods.html', context)
+    if hoods:
+        context = {
+            'hoods': hoods
+        }
+
+        return render(request, 'hoods.html', context)
+
+    return render(request, 'hoods.html')
+
+
+def businesses(request):
+
+    businesses = Business.objects.all()
+
+    if businesses:
+        context = {'businesses': businesses}
+
+        return render(request, 'businesses.html', context)
+
+    return render(request, 'businesses.html')
 
 
 def profile(request, username):

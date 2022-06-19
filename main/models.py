@@ -109,6 +109,8 @@ class Business(models.Model):
     name = models.CharField(blank=False, null=False, max_length=120)
     neighbourhood = models.ForeignKey(Neighbourhood, on_delete=models.CASCADE)
     email = models.EmailField(blank=True, null=True)
+    business_contact = models.PositiveIntegerField(
+        null=True, blank=True, validators=[MaxValueValidator(9999999999999)])
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self) -> str:
