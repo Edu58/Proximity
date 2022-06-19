@@ -1,4 +1,3 @@
-from unicodedata import name
 from django.db import models
 from django.contrib.auth.models import User
 from django.shortcuts import get_object_or_404
@@ -15,7 +14,7 @@ class Neighbourhood(models.Model):
         null=True, blank=True, validators=[MaxValueValidator(9999999999999)])
     fire_dept_contact = models.PositiveBigIntegerField(
         null=True, blank=True, validators=[MaxValueValidator(9999999999999)])
-    admin = models.ForeignKey(User, on_delete=models.PROTECT)
+    admin = models.ForeignKey(User, on_delete=models.SET_DEFAULT, default=1)
 
     def __str__(self) -> str:
         return self.name
