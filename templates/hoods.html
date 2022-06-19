@@ -11,13 +11,22 @@
 {% block content %}
 <section class="content container" style="margin-top: 8%;">
 
-    <form action="{% url 'hoods' %}" method="post">
-        {% csrf_token %}
-        <div class="input-group my-3">
-            <input type="text" name="hood-query" class="form-control shadow-none" placeholder="neighbourhood" required>
-            <button class="btn text-light shadow-none" type="submit" id="search-button">Search</button>
+    <div>
+        <form action="{% url 'hoods' %}" method="post">
+            {% csrf_token %}
+            <div class="input-group my-3">
+                <input type="text" name="hood-query" class="form-control shadow-none" placeholder="neighbourhood"
+                    required>
+                <button class="btn text-light shadow-none" type="submit" id="search-button">Search</button>
+            </div>
+        </form>
+
+        <div class="text-center">
+            <a href="">
+                <button class="btn btn-sm btn-outline-primary">Add Neighbourhood</button>
+            </a>
         </div>
-    </form>
+    </div>
 
     <div class="row mt-2">
         {% if hoods %}

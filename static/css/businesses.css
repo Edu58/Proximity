@@ -3,11 +3,11 @@ section form {
     margin: auto;
 }
 
-section form button {
+section form #search-button {
     background-color: orange !important;
     transition: .2s ease-in-out;
 }
 
-section form button:hover {
+section form #search-button:hover {
     background-color: #fdc134be !important;
 }

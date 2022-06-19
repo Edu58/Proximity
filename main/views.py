@@ -117,6 +117,12 @@ def hoods(request):
 
 
 @login_required(login_url='login')
+def add_hood(request):
+
+    return render(request, 'add-hood.html')
+
+
+@login_required(login_url='login')
 def businesses(request):
 
     businesses = Business.objects.all()
