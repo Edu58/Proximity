@@ -14,9 +14,10 @@
     <div class="profile d-flex justify-content-around">
         <div class="dp pe-5">
             {% if user.profile.profile_pic %}
-            <img src="{{ user.profile.profile_pic.url }}" alt="" style="width: 4rem; height: 4rem; border-radius: 50%;">
+            <img src="{{ user.profile.profile_pic.url }}" alt="" style="width: 5rem; height: 5rem; border-radius: 50%;">
             {% else %}
-            <span>No Photo</span>
+            <p
+                style="width: 5rem; height: 5rem; border-radius: 50%; background-color: #74b2c3;"></p>
             {% endif %}
         </div>
 
