@@ -33,6 +33,12 @@ section .row .card .card-header.alert {
     padding: 8px 16px !important;
 }
 
+section .row .card .card-header.event {
+    background-color: var(--color-secondary)!important;
+    margin-bottom: 0 !important;
+    padding: 8px 16px !important;
+}
+
 #card-btn {
     background-color: var(--color-secondary);
     transition: .2s ease-in-out;

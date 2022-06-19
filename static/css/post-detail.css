@@ -1,0 +1,15 @@
+section .read .card .card-header.announcement {
+    background-color: rgba(255, 166, 0, 0.918) !important;
+}
+
+section .read .card .card-header.alert {
+    background-color: rgba(255, 0, 0, 0.918) !important;
+    margin-bottom: 0 !important;
+    padding: 8px 16px !important;
+}
+
+section .read .card .card-header.event {
+    background-color: var(--color-secondary) !important;
+    margin-bottom: 0 !important;
+    padding: 8px 16px !important;
+}

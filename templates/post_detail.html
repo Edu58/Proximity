@@ -4,7 +4,7 @@
 
 {% block styles %}
 {{block.super}}
-<link rel="stylesheet" href="{% static 'css/vote.css' %}">
+<link rel="stylesheet" href="{% static 'css/post-detail.css' %}">
 {% endblock styles %}
 
 {% block title %}Read More{% endblock title %}
@@ -23,20 +23,23 @@
             </span>
         </p>
         {% if post.user.profile.profile_pic %}
-        <img src="{{ post.user.profile.profile_pic.url }}" alt="" style="width: 5rem; height: 5rem; border-radius: 50%;">
+        <img src="{{ post.user.profile.profile_pic.url }}" alt=""
+            style="width: 5rem; height: 5rem; border-radius: 50%;">
         {% else %}
         <p style="width: 5rem; height: 5rem; border-radius: 50%; background-color: #74b2c3;"></p>
         {% endif %}
     </div>
 
-    <div class="mt-4">
+    <div class="read mt-4">
 
         <div class="card" style="background: transparent !important;">
-            <h5 class="card-header">{{ post.category }}</h5>
-            <h5 class="card-header">{{ post.neighbourhood }}</h5>
+            <h5 class="card-header {% if post.category|title == 'Announcement' %} announcement
+                {% elif post.category|title == 'Alert' %} alert {% else %} event {% endif %}" id="card_header"><i
+                    class='bx bxs-label me-2'></i>{{ post.category }}</h5>
+            <h5 class="card-header"><i class='bx bx-current-location me-2'></i>{{ post.neighbourhood }}</h5>
             <div class="card-body">
-                <h5 class="card-title">Title: {{post.title}}</h5>
-                <p class="card-text">{{ post.description }}</p>
+                <h5 class="card-title"><i class='bx bxs-note me-2'></i> {{post.title}}</h5>
+                <p class="card-text mt-4">{{ post.description }}</p>
             </div>
         </div>
     </div>
