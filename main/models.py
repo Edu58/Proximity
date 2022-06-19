@@ -31,11 +31,12 @@ class Neighbourhood(models.Model):
         self.save()
 
     @classmethod
-    def find_neigborhood(cls, neigborhood_id):
+    def find_neigborhood(cls, name):
         try:
-            neighbourhood = get_object_or_404(cls, pk=neigborhood_id)
+            neighbourhood = cls.objects.filter(name__icontains=name)
         except:
             return None
+
         return neighbourhood
 
     def delete_neighbourhood(self):
@@ -123,9 +124,9 @@ class Business(models.Model):
         self.save()
 
     @classmethod
-    def find_business(cls, business_id):
+    def find_business(cls, business_name):
         try:
-            business = get_object_or_404(cls, pk=business_id)
+            business = cls.objects.filter(name__icontains=business_name)
         except:
             return None
         return business

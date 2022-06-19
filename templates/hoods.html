@@ -1,10 +1,24 @@
 {%extends 'base.html'%}
 {% load static %}
 
+{% block styles %}
+{{block.super}}
+<link rel="stylesheet" href="{% static 'css/hoods.css' %}">
+{% endblock %}
+
 {% block title %}Hoods{% endblock %}
 
 {% block content %}
 <section class="content container" style="margin-top: 8%;">
+
+    <form action="{% url 'hoods' %}" method="post">
+        {% csrf_token %}
+        <div class="input-group my-3">
+            <input type="text" name="hood-query" class="form-control shadow-none" placeholder="neighbourhood" required>
+            <button class="btn text-light shadow-none" type="submit" id="search-button">Search</button>
+        </div>
+    </form>
+
     <div class="row mt-2">
         {% if hoods %}
         {% for hood in hoods %}

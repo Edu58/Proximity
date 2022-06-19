@@ -1,16 +1,3 @@
-section form {
-    max-width: 30rem;
-    margin: auto;
-}
-
-section form button {
-    background-color: orange !important;
-    transition: .2s ease-in-out;
-}
-
-section form button:hover {
-    background-color: #fdc134be !important;
-}
 
 section .row .card {
     width: auto;

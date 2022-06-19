@@ -50,16 +50,6 @@ def home(request):
 
     [post for post in all_posts]
 
-    # if request.method == "POST":
-    #     query = request.POST.get('project-query')
-    #     results = Event.get_project_by_title(query)
-
-    #     context = {
-    #         'projects': results,
-    #     }
-
-    #     return render(request, 'home.html', context)
-
     context = {
         'posts': all_posts,
     }
@@ -106,26 +96,39 @@ def hoods(request):
 
     hoods = Neighbourhood.objects.all()
 
-    if hoods:
+    if request.method == "POST":
+        query = request.POST.get('hood-query')
+        results = Neighbourhood.find_neigborhood(query)
+
         context = {
-            'hoods': hoods
+            'hoods': results,
         }
 
         return render(request, 'hoods.html', context)
 
-    return render(request, 'hoods.html')
+    context = {'hoods': hoods}
+
+    return render(request, 'hoods.html', context)
 
 
 def businesses(request):
 
     businesses = Business.objects.all()
 
-    if businesses:
-        context = {'businesses': businesses}
+    if request.method == "POST":
+        query = request.POST.get('business-query')
+        results = Business.find_business(query)
+
+        context = {
+            'businesses': results,
+        }
 
         return render(request, 'businesses.html', context)
 
-    return render(request, 'businesses.html')
+
+    context = {'businesses': businesses}
+
+    return render(request, 'businesses.html', context)
 
 
 def profile(request, username):
