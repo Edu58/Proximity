@@ -12,7 +12,7 @@
    opacity: .8;
 }
 
-section .container .index-btns ul #index-login-btn a {
+section .container-fluid .index-btns ul #index-login-btn a {
     background: var(--color-primary);
     padding: 10px 22px;
     max-width: 10rem;
@@ -21,6 +21,6 @@ section .container .index-btns ul #index-login-btn a {
     text-align: center;
 }
 
-section .container .index-btns ul #index-login-btn:hover {
+section .container-fluid .index-btns ul #index-login-btn:hover {
     opacity: .8;
 }
