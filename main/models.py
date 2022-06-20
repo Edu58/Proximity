@@ -9,12 +9,19 @@ class Neighbourhood(models.Model):
     location = models.CharField(blank=False, null=False, max_length=60)
     number_of_occupants = models.PositiveIntegerField(blank=False, null=False)
     health_dept_contact = models.PositiveIntegerField(
-        null=True, blank=True, validators=[MaxValueValidator(9999999999999)])
+        null=True, blank=True, validators=[MaxValueValidator(9999999999999)]
+    )
     police_dept_contact = models.PositiveIntegerField(
-        null=True, blank=True, validators=[MaxValueValidator(9999999999999)])
+        null=True, blank=True, validators=[MaxValueValidator(9999999999999)]
+    )
     fire_dept_contact = models.PositiveBigIntegerField(
-        null=True, blank=True, validators=[MaxValueValidator(9999999999999)])
+        null=True, blank=True, validators=[MaxValueValidator(9999999999999)]
+    )
     admin = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ["-created_at"]
 
     def __str__(self) -> str:
         return self.name
@@ -44,13 +51,10 @@ class Neighbourhood(models.Model):
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    neighbourhood = models.ForeignKey(Neighbourhood,
-                                      on_delete=models.CASCADE,
-                                      blank=True,
-                                      null=True)
-    profile_pic = models.ImageField(blank=True,
-                                    null=True,
-                                    upload_to='profiles/')
+    neighbourhood = models.ForeignKey(
+        Neighbourhood, on_delete=models.CASCADE, blank=True, null=True
+    )
+    profile_pic = models.ImageField(blank=True, null=True, upload_to="profiles/")
     bio = models.TextField(null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
@@ -68,6 +72,9 @@ class Category(models.Model):
     name = models.CharField(blank=False, null=False, max_length=60)
     created_at = created_at = models.DateTimeField(auto_now_add=True)
 
+    class Meta:
+        ordering = ["-created_at"]
+
     def __str__(self) -> str:
         return self.name
 
@@ -79,18 +86,19 @@ class Category(models.Model):
 
 
 class Post(models.Model):
-    user = models.ForeignKey(User,
-                             related_name='posts',
-                             on_delete=models.CASCADE)
-    category = models.ForeignKey(Category,
-                                 related_name='category',
-                                 on_delete=models.CASCADE)
-    neighbourhood = models.ForeignKey(Neighbourhood,
-                                      related_name='hood_posts',
-                                      on_delete=models.CASCADE)
+    user = models.ForeignKey(User, related_name="posts", on_delete=models.CASCADE)
+    category = models.ForeignKey(
+        Category, related_name="category", on_delete=models.CASCADE
+    )
+    neighbourhood = models.ForeignKey(
+        Neighbourhood, related_name="hood_posts", on_delete=models.CASCADE
+    )
     title = models.CharField(blank=False, null=False, max_length=120)
     description = models.TextField(blank=False, null=False)
     created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ["-created_at"]
 
     def __str__(self) -> str:
         return self.title
@@ -108,8 +116,12 @@ class Business(models.Model):
     neighbourhood = models.ForeignKey(Neighbourhood, on_delete=models.CASCADE)
     email = models.EmailField(blank=True, null=True)
     business_contact = models.PositiveIntegerField(
-        null=True, blank=True, validators=[MaxValueValidator(9999999999999)])
+        null=True, blank=True, validators=[MaxValueValidator(9999999999999)]
+    )
     created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ["-created_at"]
 
     def __str__(self) -> str:
         return self.name
